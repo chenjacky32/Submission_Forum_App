@@ -1,11 +1,11 @@
-import { hideLoading, showLoading } from 'react-redux-loading-bar';
-import api from '../../utils/api';
+import { hideLoading, showLoading } from "react-redux-loading-bar";
+import api from "../../utils/api";
 
 const ActionType ={
-    LOGIN : 'LOGIN',
-    LOGOUT: 'LOGOUT',
-    REGISTER: 'REGISTER',
-    SET_PROFILE: 'SET_PROFILE'
+    LOGIN : "LOGIN",
+    LOGOUT: "LOGOUT",
+    REGISTER: "REGISTER",
+    SET_PROFILE: "SET_PROFILE"
 }
 
 

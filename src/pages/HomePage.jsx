@@ -1,12 +1,12 @@
 import { useDispatch, useSelector } from "react-redux"
-import FormatDate from '../utils/FormatDate';
-import { Link } from 'react-router-dom';
+import FormatDate from "../utils/FormatDate";
+import { Link } from "react-router-dom";
 // import ForumList from "../components/ForumList"
 import {asyncGetThreadAndUsers,
         asyncUpVoteThread,
         asyncDownVoteThread,
         asyncNeutralizeThreadVote, 
-} from '../states/ThreadandUsers/action';
+} from "../states/ThreadandUsers/action";
 import { useEffect } from "react";
 import { CiCirclePlus } from "react-icons/ci";
 
@@ -46,7 +46,7 @@ function HomePage(){
         {threads.length > 0 && threads.map((thread)=> {
             return(
                 <>
-                <section key={thread.id} style={{marginBlock:'30px',marginInline:'50px'}}>
+                <section key={thread.id} style={{marginBlock:"30px",marginInline:"50px"}}>
                     <div className="forum-item">
                     <div className="forum-item__detail">
                         <div className="container__detail">
@@ -71,13 +71,13 @@ function HomePage(){
                                 <p>{thread.downVotesBy.length}</p>
                             </div>
                         </div>
-                        <p style={{textAlign: 'end', fontWeight: 'bold' ,fontSize:'1rem'}}>{thread.totalComments === 0 ? 'No Comment': `Comment Count: ${thread.totalComments}`}</p>
+                        <p style={{textAlign: "end", fontWeight: "bold" ,fontSize:"1rem"}}>{thread.totalComments === 0 ? "No Comment": `Comment Count: ${thread.totalComments}`}</p>
                     </div>
                 </div>
                 <div>
                     {isLogin && (
-                        <div style={{position:"fixed", right:'2rem', bottom:'2rem', fontSize:'1.25rem'}}>
-                            <Link to="/add-discussion"><CiCirclePlus style={{color: "black", fontSize:'3rem'}}/></Link>
+                        <div style={{position:"fixed", right:"2rem", bottom:"2rem", fontSize:"1.25rem"}}>
+                            <Link to="/add-discussion"><CiCirclePlus style={{color: "black", fontSize:"3rem"}}/></Link>
                         </div>
                     )}
                 </div>

@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types';
-import formatDate  from '../utils/FormatDate';
+import PropTypes from "prop-types";
+import formatDate  from "../utils/FormatDate";
 
 export default function DetailComment({avatar,name,content,createdAt}){
     return(

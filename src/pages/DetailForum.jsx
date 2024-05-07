@@ -1,15 +1,15 @@
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import {asyncGetThreadDetail,asyncAddComment} from '../states/ThreadDetail/action';
-import  formatDate  from '../utils/FormatDate';
-import { useDispatch, useSelector } from 'react-redux';
-import useInput from '../hooks/useInput';
-import DetailComment from '../components/DetailComment';
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import {asyncGetThreadDetail,asyncAddComment} from "../states/ThreadDetail/action";
+import  formatDate  from "../utils/FormatDate";
+import { useDispatch, useSelector } from "react-redux";
+import useInput from "../hooks/useInput";
+import DetailComment from "../components/DetailComment";
 
 
 export default function DetailForum(){
 
-    const [content, HandleContent] = useInput('');
+    const [content, HandleContent] = useInput("");
     const { id } = useParams();
     const { threadDetail, commentCreated } = useSelector((state)=> state.ThreadsDetail)
     const dispatch = useDispatch();
@@ -39,7 +39,7 @@ useEffect(()=>{
                 <p>{threadDetail.body}</p>
                 <div className="detail-forum__avatar">
                     <img src={threadDetail.owner?.avatar} alt="foto" />
-                    <p style={{fontSize:'20px', fontWeight:'bold', textDecoration:'underline'}}>Created By: {threadDetail.owner?.name}</p>
+                    <p style={{fontSize:"20px", fontWeight:"bold", textDecoration:"underline"}}>Created By: {threadDetail.owner?.name}</p>
                 </div>
                 <p>{formatDate(threadDetail.createdAt)}</p>
                 <div className="detail-forum__vote">
@@ -53,7 +53,7 @@ useEffect(()=>{
                     </form>
                 </div>
                 <div className="detail-forum__comment">
-                    <p>{threadDetail.comments?.length === 0 ? 'No Comment' : `Comment Count : ${threadDetail.comments?.length}`}</p>
+                    <p>{threadDetail.comments?.length === 0 ? "No Comment" : `Comment Count : ${threadDetail.comments?.length}`}</p>
                     {threadDetail.comments?.map((item,index)=> (
                         <DetailComment key={index} avatar={item.owner?.avatar} name={item.owner?.name} content={item.content} createdAt={item.createdAt}/>
                     ))}

@@ -10,7 +10,7 @@ export default function RegisterPage(){
 
     function EventHandleRegister( {name, email, password} ){
         dispatch(asyncRegisterAction({name, email, password}));
-        Navigate('/');
+        Navigate("/");
     }
     return(
     <>
@@ -20,7 +20,7 @@ export default function RegisterPage(){
             </div>
             <div className="register-page__input">
             <RegisterInput onRegister={EventHandleRegister}/>
-            <p>Sudah Punya Akun <Link to={'/login'}>login disini</Link></p>
+            <p>Sudah Punya Akun <Link to={"/login"}>login disini</Link></p>
             </div>
         </section>
     </>

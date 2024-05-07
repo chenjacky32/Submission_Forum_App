@@ -33,15 +33,15 @@ export default function Navigation(){
                 </div>
                     <ul className="navigation__item">
                         <li>
-                            <Link to={'/'} style={{color:'yellow'}}><MdForum style={{fontSize:'2rem'}}/></Link>
+                            <Link to={"/"} style={{color:"yellow"}}><MdForum style={{fontSize:"2rem"}}/></Link>
                         </li>
                         <li>
-                            <Link to={'/leaderboards'} style={{color:'yellow'}}><MdLeaderboard style={{fontSize:'2rem'}}/></Link>
+                            <Link to={"/leaderboards"} style={{color:"yellow"}}><MdLeaderboard style={{fontSize:"2rem"}}/></Link>
                         </li>
                         {isLogin ? (
                         <li>
                             <div className="navigation__avatar">
-                            <Link style={{color: 'yellow', display:'flex', alignItems:'center'}} onClick={EventHandleLogout}><LuLogOut style={{fontSize:'2rem'}} /></Link>
+                            <Link style={{color: "yellow", display:"flex", alignItems:"center"}} onClick={EventHandleLogout}><LuLogOut style={{fontSize:"2rem"}} /></Link>
                                 <div className="navigation__avatar__item">
                                     <img src={profile?.avatar} alt="" width="50px"/>
                                     <div className="navigation__avatar__name">
@@ -53,7 +53,7 @@ export default function Navigation(){
                         </li>
                         ) : (
                         <li>
-                        <Link style={{color: 'yellow'}} to={'/login'}><GrLogin style={{fontSize:'2rem'}} /></Link>
+                        <Link style={{color: "yellow"}} to={"/login"}><GrLogin style={{fontSize:"2rem"}} /></Link>
                     </li>
                     )}
                 </ul>

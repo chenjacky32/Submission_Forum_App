@@ -5,9 +5,9 @@ import { asyncAddThread } from "../states/ThreadandUsers/action";
 import { useEffect } from "react";
 
 export default function DiscussInput(){
-    const [judul,onChangeJudul] = useInput('');
-    const [kategori,onChangeKategori] = useInput('');
-    const [body,onChangeBody] = useInput('');
+    const [judul,onChangeJudul] = useInput("");
+    const [kategori,onChangeKategori] = useInput("");
+    const [body,onChangeBody] = useInput("");
     const { addThread } = useSelector((state)=> state.ThreadAndUser)
     const dispatch = useDispatch();
     const Navigate = useNavigate();
@@ -19,7 +19,7 @@ export default function DiscussInput(){
 
     useEffect(()=>{
         if(addThread){
-            Navigate('/')
+            Navigate("/")
         }
     },[addThread,Navigate])
 

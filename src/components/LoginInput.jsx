@@ -1,9 +1,9 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import useInput from "../hooks/useInput"
 
 export default function LoginInput({onLogin}){
-    const [email, onChangeEmail] = useInput('');
-    const [password, onChangePassword] = useInput('');
+    const [email, onChangeEmail] = useInput("");
+    const [password, onChangePassword] = useInput("");
 
     return(
     <>

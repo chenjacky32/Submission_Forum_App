@@ -5,7 +5,7 @@ import DetailForum from "./pages/DetailForum"
 import { RouterProvider, createBrowserRouter } from "react-router-dom"
 import RootPage from "./pages/RootPage"
 import LeaderBoards from "./pages/LeaderBoards"
-import AddDiscuss from './pages/AddDiscuss'
+import AddDiscuss from "./pages/AddDiscuss"
 
 export default function App() {
 const router = createBrowserRouter([
@@ -19,23 +19,23 @@ const router = createBrowserRouter([
         element: <HomePage/>
       },
       {
-        path: '/login',
+        path: "/login",
         element: <LoginPage/>
       },
       {
-        path: '/register',
+        path: "/register",
         element: <RegisterPage/>
       },
       {
-        path:'/leaderboards',
+        path:"/leaderboards",
         element: <LeaderBoards/>
       },
       {
-        path:'/threads/:id',
+        path:"/threads/:id",
         element: <DetailForum/>
       },
       {
-        path:'/add-discussion',
+        path:"/add-discussion",
         element: <AddDiscuss/>
       }
     ].filter((item)=> item)

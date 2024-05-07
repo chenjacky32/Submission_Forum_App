@@ -10,7 +10,7 @@ export default function LoginPage(){
 
     function EventHandlerLogin({email,password}){
         dispatch(asyncLoginAction({email,password}))
-        navigate('/')
+        navigate("/")
     }
 
     return (
@@ -21,7 +21,7 @@ export default function LoginPage(){
             </div>
             <div className="login-page__input">
             <LoginInput onLogin={EventHandlerLogin}/>
-            <p>Belum punya akun? <Link to={'/register'}>daftar disini</Link></p>
+            <p>Belum punya akun? <Link to={"/register"}>daftar disini</Link></p>
             </div>
 
         </section>

@@ -1,5 +1,5 @@
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
-import Navigation from '../components/Navigation'
+import Navigation from "../components/Navigation"
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 

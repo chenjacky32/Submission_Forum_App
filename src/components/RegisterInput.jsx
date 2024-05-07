@@ -1,10 +1,10 @@
-import useInput from '../hooks/useInput'
-import PropTypes from 'prop-types';
+import useInput from "../hooks/useInput"
+import PropTypes from "prop-types";
 
 export default function RegisterInput({onRegister}){
-    const [name, onChangeName] = useInput('');
-    const [email, onChangeEmail] = useInput('');
-    const [password, onChangePassword] = useInput('');
+    const [name, onChangeName] = useInput("");
+    const [email, onChangeEmail] = useInput("");
+    const [password, onChangePassword] = useInput("");
 
     return(
     <>

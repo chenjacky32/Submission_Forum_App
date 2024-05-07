@@ -14,15 +14,15 @@ export default function LeaderBoards(){
 
 
     return <>
-            <div style={{display:'flex', 
-                        justifyContent:'center', 
-                        paddingBlock:'4rem',
-                        flexDirection:'column',
+            <div style={{display:"flex", 
+                        justifyContent:"center", 
+                        paddingBlock:"4rem",
+                        flexDirection:"column",
                     }}>
-                <h1 style={{fontSize:'3rem', 
-                            textDecoration:'underline',
-                            textAlign:'center', 
-                            marginBottom:'2rem'
+                <h1 style={{fontSize:"3rem", 
+                            textDecoration:"underline",
+                            textAlign:"center", 
+                            marginBottom:"2rem"
                             }}>LeaderBoards</h1>
                 {leaderboards.map((leaderboard)=>{
                         return <LeaderBoardsItem 
