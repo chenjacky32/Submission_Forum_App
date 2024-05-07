@@ -2,6 +2,7 @@ module.exports = {
   root: true,
   env: { browser: true, es2020: true },
   extends: [
+    'airbnb',
     'eslint:recommended',
     'plugin:react/recommended',
     'plugin:react/jsx-runtime',
@@ -17,6 +18,14 @@ module.exports = {
       'warn',
       { allowConstantExport: true },
     ],
-    'quotes': ['error', 'double'],
+    'import/extensions': 'off',
+    'import/order': 'off',
+    'import/no-extraneous-dependencies': 'off',
+    'no-underscore-dangle': 'off',
+    'no-use-before-define': 'off',
+    'no-alert': 'off',
+    'default-param-last': 'off',
+    'react/jsx-no-bind': 'off',
+    'default-param-last': 'off',
   },
 };
