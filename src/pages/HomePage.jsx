@@ -71,6 +71,7 @@ function HomePage(){
                                 <p>{thread.downVotesBy.length}</p>
                             </div>
                         </div>
+                        <p style={{textAlign: 'end', fontWeight: 'bold' ,fontSize:'1rem'}}>{thread.totalComments === 0 ? 'No Comment': `Comment Count: ${thread.totalComments}`}</p>
                     </div>
                 </div>
                 <div>
