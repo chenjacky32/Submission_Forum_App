@@ -26,4 +26,4 @@ function AsyncGetLeaderBoards() {
   };
 }
 
-export { ActionType, AsyncGetLeaderBoards };
+export { ActionType, AsyncGetLeaderBoards, GetLeaderBoards };
