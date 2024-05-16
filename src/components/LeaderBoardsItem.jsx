@@ -7,15 +7,16 @@ export default function LeaderBoardsItem({
     <div style={{
       display: 'flex',
       flexDirection: 'column',
-      gap: '10px',
+      gap: '5px',
       margin: 'auto',
       borderStyle: 'solid',
       paddingBlock: '2rem',
       paddingInline: '2rem',
       marginBottom: '2rem',
+      flexWrap: 'wrap',
     }}
     >
-      <img src={avatar} alt="avatar" />
+      <img src={avatar} alt="avatar" width="100px" height="100px" />
       <p>{name}</p>
       <p>{email}</p>
       <p>

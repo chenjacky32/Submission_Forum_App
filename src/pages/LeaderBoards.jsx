@@ -29,7 +29,7 @@ export default function LeaderBoards() {
       </h1>
       {leaderboards.map((leaderboard) => (
         <LeaderBoardsItem
-          key={leaderboard.id}
+          key={leaderboard.user.id}
           name={leaderboard.user.name}
           avatar={leaderboard.user.avatar}
           score={leaderboard.score}

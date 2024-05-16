@@ -59,7 +59,7 @@ export default function Navigation() {
               </div>
             </li>
           ) : (
-            <li>
+            <li id="login">
               <Link style={{ color: 'yellow' }} to="/login"><GrLogin style={{ fontSize: '2rem' }} /></Link>
             </li>
           )}
