@@ -10,7 +10,7 @@
 
 describe('Login Page spec', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:5174/login');
+    cy.visit('http://localhost:5173/login');
   });
   it('should display login page correctly', () => {
     cy.get('input[placeholder="Email"]').should('be.visible');

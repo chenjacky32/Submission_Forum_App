@@ -27,7 +27,7 @@
 // cypress/support/commands.js
 // custom command login
 Cypress.Commands.add('login', (email, password) => {
-  cy.visit('http://localhost:5174/login');
+  cy.visit('http://localhost:5173/login');
   cy.get('input[placeholder="Email"]').type(email);
   cy.get('input[placeholder="Password"]').type(password);
   cy.get('button').contains(/^Login$/).click();

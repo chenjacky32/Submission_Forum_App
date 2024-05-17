@@ -9,7 +9,7 @@ export default function RegisterPage() {
 
   function EventHandleRegister({ name, email, password }) {
     dispatch(asyncRegisterAction({ name, email, password }));
-    Navigate('/');
+    Navigate('/login');
   }
   return (
     <section className="register-page">
