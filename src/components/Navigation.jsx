@@ -29,7 +29,7 @@ export default function Navigation() {
       <LoadingBar />
       <nav className="list-navigation">
         <div className="navigation__title">
-          <h1>Forum Apps</h1>
+          <h1>Forum App</h1>
         </div>
         <ul className="navigation__item">
           <li>
