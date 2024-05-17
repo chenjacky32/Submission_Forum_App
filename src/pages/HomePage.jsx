@@ -45,7 +45,7 @@ function HomePage() {
     <section className="homepage">
       <div className="forum-list">
         <div className="forum-list__title">
-          <h1>List Forum App</h1>
+          <h1>List Forum Apps</h1>
         </div>
         {threads.length > 0 && threads.map((thread) => (
           <section key={thread.id} style={{ marginBlock: '30px', marginInline: '50px' }}>
