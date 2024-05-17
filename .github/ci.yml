@@ -1,4 +1,4 @@
-name: Continuous Integration Forum_App
+name: Continuous Integration 
 
 on:
   pull_request:
@@ -18,5 +18,4 @@ jobs:
       - name: npm install dan test
         run: |
           npm install
-          npm test
           npm run ci:test
