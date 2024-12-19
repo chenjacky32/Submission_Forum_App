@@ -69,8 +69,7 @@ describe('ThreadandUsersReducer', () => {
     };
     const action = {
       type: 'ADD_THREAD',
-      payload:
-      {
+      payload: {
         id: 'thread-1',
         title: 'Thread Pertama',
         body: 'Ini adalah thread pertama',

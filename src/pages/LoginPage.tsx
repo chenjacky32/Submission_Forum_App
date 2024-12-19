@@ -25,7 +25,6 @@ export default function LoginPage() {
           <Link to="/register">daftar disini</Link>
         </p>
       </div>
-
     </section>
   );
 }

@@ -43,7 +43,9 @@ const api = (() => {
       throw new Error(message);
     }
 
-    const { data: { user } } = responseJson;
+    const {
+      data: { user },
+    } = responseJson;
     return user;
   }
 
@@ -67,7 +69,9 @@ const api = (() => {
       throw new Error(message);
     }
 
-    const { data: { token } } = responseJson;
+    const {
+      data: { token },
+    } = responseJson;
     putAccessToken(token);
 
     return token;
@@ -82,7 +86,9 @@ const api = (() => {
       throw new Error(message);
     }
 
-    const { data: { user } } = responseJson;
+    const {
+      data: { user },
+    } = responseJson;
 
     return user;
   }
@@ -98,7 +104,9 @@ const api = (() => {
       throw new Error(message);
     }
 
-    const { data: { users } } = responseJson;
+    const {
+      data: { users },
+    } = responseJson;
 
     return users;
   }
@@ -123,7 +131,9 @@ const api = (() => {
       throw new Error(message);
     }
 
-    const { data: { thread } } = responseJson;
+    const {
+      data: { thread },
+    } = responseJson;
     return thread;
   }
 
@@ -137,7 +147,9 @@ const api = (() => {
       throw new Error(message);
     }
 
-    const { data: { threads } } = responseJson;
+    const {
+      data: { threads },
+    } = responseJson;
 
     return threads;
   }
@@ -150,7 +162,9 @@ const api = (() => {
     if (status !== 'success') {
       throw new Error(message);
     }
-    const { data: { detailThread } } = responseJson;
+    const {
+      data: { detailThread },
+    } = responseJson;
 
     return detailThread;
   }
@@ -173,7 +187,9 @@ const api = (() => {
       throw new Error(message);
     }
 
-    const { data: { comment } } = responseJson;
+    const {
+      data: { comment },
+    } = responseJson;
     return comment;
   }
 
@@ -241,7 +257,9 @@ const api = (() => {
       throw new Error(message);
     }
 
-    const { data: { vote } } = responseJson;
+    const {
+      data: { vote },
+    } = responseJson;
     return vote;
   }
 
@@ -260,7 +278,9 @@ const api = (() => {
       throw new Error(message);
     }
 
-    const { data: { vote } } = responseJson;
+    const {
+      data: { vote },
+    } = responseJson;
     return vote;
   }
 
@@ -279,7 +299,9 @@ const api = (() => {
       throw new Error(message);
     }
 
-    const { data: { vote } } = responseJson;
+    const {
+      data: { vote },
+    } = responseJson;
     return vote;
   }
 
@@ -293,7 +315,9 @@ const api = (() => {
       throw new Error(message);
     }
 
-    const { data: { leaderboards } } = responseJson;
+    const {
+      data: { leaderboards },
+    } = responseJson;
     return leaderboards;
   }
 

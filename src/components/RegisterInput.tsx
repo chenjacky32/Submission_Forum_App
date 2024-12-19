@@ -11,7 +11,9 @@ export default function RegisterInput({ onRegister }) {
       <input type="text" placeholder="Name" value={name} onChange={onChangeName} id="NameRegister" />
       <input type="text" placeholder="Email" value={email} onChange={onChangeEmail} id="EmailRegister" />
       <input type="password" placeholder="Password" value={password} onChange={onChangePassword} id="PasswordRegister" />
-      <button type="button" onClick={() => onRegister({ name, email, password })}>Register</button>
+      <button type="button" onClick={() => onRegister({ name, email, password })}>
+        Register
+      </button>
     </form>
   );
 }

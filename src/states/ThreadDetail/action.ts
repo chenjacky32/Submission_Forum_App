@@ -9,7 +9,7 @@ const ActionType = {
   ADD_COMMENT: 'ADD_COMMENT',
 };
 
-function getThreadDetailActionCreator(payload) {
+function getThreadDetailActionCreator(payload: Array<Object>) {
   return {
     type: ActionType.GET_THREAD_DETAIL,
     payload,
