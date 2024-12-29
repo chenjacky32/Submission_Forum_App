@@ -6,13 +6,15 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import RootPage from './pages/RootPage';
 import LeaderBoards from './pages/LeaderBoards';
 import AddDiscuss from './pages/AddDiscuss';
+import ErrorPage from './pages/ErrorPage';
+import ProfilePages from './pages/ProfilePages';
 
 export default function App() {
   const router = createBrowserRouter([
     {
       path: '/',
       element: <RootPage />,
-      errorElement: <h1>Ada Error Gaiisss..</h1>,
+      errorElement: <ErrorPage />,
       children: [
         {
           index: true,
@@ -37,6 +39,10 @@ export default function App() {
         {
           path: '/add-discussion',
           element: <AddDiscuss />,
+        },
+        {
+          path: '/users/me',
+          element: <ProfilePages />,
         },
       ].filter((item) => item),
     },

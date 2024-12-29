@@ -1,11 +1,12 @@
 import { ActionType } from './action';
+import { PayloadAction } from '@reduxjs/toolkit';
 
 const initState = {
   threadDetail: {},
   commentCreated: false,
 };
 
-function ThreadDetailReducer(state = initState, action) {
+function ThreadDetailReducer(state = initState, action: PayloadAction<any>) {
   switch (action.type) {
     case ActionType.GET_THREAD_DETAIL:
       return {

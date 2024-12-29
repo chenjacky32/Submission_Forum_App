@@ -5,6 +5,10 @@ import ThreadandUsersReducer from './ThreadandUsers/reducer';
 import ThreadDetailReducer from './ThreadDetail/reducer';
 import LeaderBoardsReducer from './LeaderBoards/reducer';
 
+export type AppStore = typeof store;
+export type RootState = ReturnType<AppStore['getState']>;
+export type AppDispatch = AppStore['dispatch'];
+
 const store = configureStore({
   reducer: {
     loadingBar: loadingBarReducer,

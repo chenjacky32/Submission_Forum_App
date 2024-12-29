@@ -1,5 +1,7 @@
 import { hideLoading, showLoading } from 'react-redux-loading-bar';
 import api from '../../utils/api';
+import { AppDispatch } from '../../states/index';
+import { VotePayload, AddComment, GetDetailThreadPayload } from '../../global-types/types';
 
 const ActionType = {
   GET_THREAD_DETAIL: 'GET_THREAD_DETAIL',
@@ -9,49 +11,49 @@ const ActionType = {
   ADD_COMMENT: 'ADD_COMMENT',
 };
 
-function getThreadDetailActionCreator(payload: Array<Object>) {
+function getThreadDetailActionCreator(payload: GetDetailThreadPayload) {
   return {
     type: ActionType.GET_THREAD_DETAIL,
     payload,
   };
 }
 
-function upVoteThreadActionCreator(payload) {
+function upVoteThreadActionCreator(payload: VotePayload) {
   return {
     type: ActionType.UP_VOTE_THREAD_DETAIL,
     payload,
   };
 }
 
-function downVoteThreadDetailActionCreator(payload) {
+function downVoteThreadDetailActionCreator(payload: VotePayload) {
   return {
     type: ActionType.DOWN_VOTE_THREAD_DETAIL,
     payload,
   };
 }
 
-function neutralizeThreadDetailVoteActionCreator(payload) {
+function neutralizeThreadDetailVoteActionCreator(payload: VotePayload) {
   return {
     type: ActionType.NEUTRALIZE_THREAD_DETAIL_VOTE,
     payload,
   };
 }
 
-function addCommentActionCreator(payload) {
+function addCommentActionCreator(payload: boolean) {
   return {
     type: ActionType.ADD_COMMENT,
     payload,
   };
 }
 
-function asyncGetThreadDetail(id) {
-  return async (dispatch) => {
+function asyncGetThreadDetail(id: string) {
+  return async (dispatch: AppDispatch): Promise<void> => {
     dispatch(showLoading());
     try {
       const response = await api.getThreadDetail(id);
       dispatch(addCommentActionCreator(false));
       dispatch(getThreadDetailActionCreator(response));
-    } catch (error) {
+    } catch (error: any) {
       alert(error.message);
     } finally {
       dispatch(hideLoading());
@@ -59,13 +61,13 @@ function asyncGetThreadDetail(id) {
   };
 }
 
-function asyncUpVoteThread(id) {
-  return async (dispatch) => {
+function asyncUpVoteThread(id: string) {
+  return async (dispatch: AppDispatch): Promise<void> => {
     dispatch(showLoading());
     try {
       await api.upVoteThread(id.threadId);
       dispatch(upVoteThreadActionCreator(id));
-    } catch (error) {
+    } catch (error: any) {
       alert(error.message);
     } finally {
       dispatch(hideLoading());
@@ -74,12 +76,12 @@ function asyncUpVoteThread(id) {
 }
 
 function asyncDownVoteThread(id) {
-  return async (dispatch) => {
+  return async (dispatch: AppDispatch): Promise<void> => {
     dispatch(showLoading());
     try {
       await api.downVoteThread(id.threadId);
       dispatch(downVoteThreadDetailActionCreator(id));
-    } catch (error) {
+    } catch (error: any) {
       alert(error.message);
     } finally {
       dispatch(hideLoading());
@@ -88,12 +90,12 @@ function asyncDownVoteThread(id) {
 }
 
 function asyncNeutralizeThreadDetailVote(id) {
-  return async (dispatch) => {
+  return async (dispatch: AppDispatch): Promise<void> => {
     dispatch(showLoading());
     try {
       await api.neutralizeThreadVote(id.threadId);
       dispatch(neutralizeThreadDetailVoteActionCreator(id));
-    } catch (error) {
+    } catch (error: any) {
       alert(error.message);
     } finally {
       dispatch(hideLoading());
@@ -101,13 +103,13 @@ function asyncNeutralizeThreadDetailVote(id) {
   };
 }
 
-function asyncAddComment(param) {
-  return async (dispatch) => {
+function asyncAddComment(param: AddComment) {
+  return async (dispatch: AppDispatch): Promise<void> => {
     dispatch(showLoading());
     try {
       await api.createComment(param);
       dispatch(addCommentActionCreator(true));
-    } catch (error) {
+    } catch (error: any) {
       alert(error.message);
     } finally {
       dispatch(hideLoading());

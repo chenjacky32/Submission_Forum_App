@@ -1,12 +1,7 @@
 import api from '../../utils/api';
 import { hideLoading, showLoading } from 'react-redux-loading-bar';
-import {
-  describe, it, vi, afterEach, beforeEach, expect,
-} from 'vitest';
-import {
-  AsyncGetLeaderBoards,
-  GetLeaderBoards,
-} from './action';
+import { describe, it, vi, afterEach, beforeEach, expect } from 'vitest';
+import { AsyncGetLeaderBoards, GetLeaderBoards } from './action';
 
 /**
  * skenario test
@@ -55,9 +50,7 @@ describe('LeaderBoardsReducer thunk', () => {
 
     // assert
     expect(dispatch).toHaveBeenCalledWith(showLoading());
-    expect(dispatch).toHaveBeenCalledWith(GetLeaderBoards(
-      FakeResponseLeaderboards,
-    ));
+    expect(dispatch).toHaveBeenCalledWith(GetLeaderBoards(FakeResponseLeaderboards));
     expect(dispatch).toHaveBeenCalledWith(hideLoading());
   });
 

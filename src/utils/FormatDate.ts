@@ -1,4 +1,4 @@
-export default function FormatDate(isoDateString) {
+export default function FormatDate(isoDateString: string): string {
   const date = new Date(isoDateString);
 
   const Year = date.getFullYear();

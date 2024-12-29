@@ -1,5 +1,6 @@
 import api from '../../utils/api';
 import { ActionType } from './action';
+import { PayloadAction } from '@reduxjs/toolkit';
 
 const initState = {
   isLogin: false || (api.getAccessToken() && true),
@@ -7,7 +8,7 @@ const initState = {
   Userprofile: {},
 };
 
-function authUserReducer(state = initState, action) {
+function authUserReducer(state = initState, action: PayloadAction<any>) {
   switch (action.type) {
     case ActionType.LOGIN:
       return {

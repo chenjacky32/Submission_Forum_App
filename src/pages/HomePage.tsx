@@ -1,26 +1,24 @@
 import { useDispatch, useSelector } from 'react-redux';
 import FormatDate from '../utils/FormatDate';
 import { Link } from 'react-router-dom';
-// import ForumList from "../components/ForumList"
-import {
-  asyncGetThreadAndUsers,
-  asyncUpVoteThread,
-  asyncDownVoteThread,
-  asyncNeutralizeThreadVote,
-} from '../states/ThreadandUsers/action';
+import { asyncGetThreadAndUsers, asyncUpVoteThread, asyncDownVoteThread, asyncNeutralizeThreadVote } from '../states/ThreadandUsers/action';
 import { useEffect } from 'react';
-import { CiCirclePlus } from 'react-icons/ci';
+import { AppDispatch, RootState } from '../states';
+import { Typography, Button, Card, CardBody, Avatar, CardFooter, IconButton } from '@material-tailwind/react';
+import { GetThreadPayload, GetUsersPayload } from '../global-types/types';
+import { FaThumbsUp, FaThumbsDown, FaRegCommentDots, FaPlus } from 'react-icons/fa';
+import { RequiredDefaultProps } from '../components/Navigation';
 
 function HomePage() {
-  const { users, threads } = useSelector((state) => state.ThreadAndUser);
-  const { profile, isLogin } = useSelector((state) => state.auth);
-  const dispatch = useDispatch();
+  const { users, threads } = useSelector((state: RootState) => state.ThreadAndUser);
+  const { profile, isLogin } = useSelector((state: RootState) => state.auth);
+  const dispatch: AppDispatch = useDispatch();
 
-  function EventHandlerNeutralize(threadId) {
+  function EventHandlerNeutralize(threadId: string) {
     dispatch(asyncNeutralizeThreadVote({ threadId, userId: profile.id }));
   }
 
-  function EventHandlerVoteUp(threadId) {
+  function EventHandlerVoteUp(threadId: string) {
     const ThreadSelected = threads.find((item) => item.id === threadId);
     if (ThreadSelected.upVotesBy.includes(profile.id)) {
       dispatch(asyncUpVoteThread({ threadId, userId: profile.id }));
@@ -42,52 +40,105 @@ function HomePage() {
   }, [dispatch]);
 
   return (
-    <section className="homepage">
-      <div className="forum-list">
-        <div className="forum-list__title">
-          <h1>List Forum App</h1>
+    <section>
+      <div className="mb-8 px-1.5 py-0.5">
+        <div className="flex flex-col items-start mx-12 my-8">
+          <Typography className="mb-5 text-xl font-bold text-blue-gray-900" placeholder="" {...RequiredDefaultProps}>
+            Popular Category
+          </Typography>
+          <div className="flex flex-wrap gap-3">
+            {threads.map((thread: GetThreadPayload) => {
+              return (
+                <Button
+                  key={thread.id}
+                  className="text-sm font-normal text-blue-gray-900 hover:!text-indigo-700 bg-white border focus:text-indigo-700 active:text-indigo-700
+                  active:border-solid active:border-2 active:border-indigo-700 focus:border-solid focus:border-2 focus:border-indigo-700 focus:outline-none"
+                  variant="filled"
+                  size="sm"
+                  {...RequiredDefaultProps}
+                  placeholder=""
+                >
+                  #{thread.category}
+                </Button>
+              );
+            })}
+          </div>
         </div>
-        {threads.length > 0 && threads.map((thread) => (
-          <section key={thread.id} style={{ marginBlock: '30px', marginInline: '50px' }}>
-            <div className="forum-item">
-              <div className="forum-item__detail">
-                <div className="container__detail">
-                  <div className="forum-item__info">
-                    <Link className="forum-item__title" to={`/threads/${thread.id}`}>{thread.title}</Link>
-                  </div>
-                  <p className="forum-item__created-at">{FormatDate(thread.createdAt)}</p>
+
+        {threads.length > 0 &&
+          threads.map((thread: GetThreadPayload) => (
+            <Card key={thread.id} className="mx-12 my-8" placeholder="" {...RequiredDefaultProps}>
+              <CardBody placeholder="" {...RequiredDefaultProps}>
+                <div className="flex items-center justify-start gap-4">
+                  <Avatar src={users.find((item: GetUsersPayload) => item.id === thread.ownerId).avatar} size="md" placeholder={profile.name} {...RequiredDefaultProps} />
+                  <Typography variant="h5" color="blue-gray" className="" placeholder="" {...RequiredDefaultProps}>
+                    {users.find((item: GetUsersPayload) => item.id === thread.ownerId).name}
+                  </Typography>
+
+                  <Typography className="text-sm font-semibold" placeholder="" {...RequiredDefaultProps}>
+                    {FormatDate(thread.createdAt)}
+                  </Typography>
                 </div>
-                <div className="container__detail__title">
-                  <p className="forum-item__text">{thread.body}</p>
+                <div className="py-5 border-b-2 border-double border-blue-gray-50">
+                  <Typography variant="h5" color="blue-gray" className="mb-2" placeholder="" {...RequiredDefaultProps}>
+                    <Link className="text-indigo-700" to={`/threads/${thread.id}`}>
+                      {thread.title}
+                    </Link>
+                  </Typography>
+                  <Typography color="gray" className="mb-4 text-justify" placeholder="" {...RequiredDefaultProps}>
+                    {thread.body}
+                  </Typography>
+                  <Card
+                    shadow={false}
+                    className="px-4 py-2 text-sm font-normal border border-solid border-blue-gray-900 bg-blue-gray-50 text-blue-gray-900 hover:bg-indigo-700 hover:text-white w-fit"
+                    placeholder=""
+                    {...RequiredDefaultProps}
+                  >
+                    <Typography placeholder="" className="text-sm font-normal" {...RequiredDefaultProps}>
+                      #{thread.category.toUpperCase()}
+                    </Typography>
+                  </Card>
                 </div>
-                <div className="container__detail__user">
-                  <p>{users.find((item) => item.id === thread.ownerId).name}</p>
+              </CardBody>
+              <CardFooter placeholder="" {...RequiredDefaultProps} className="!pt-0 !px-6">
+                <div className="flex gap-4">
+                  <IconButton variant="text" className="px-6" placeholder="" {...RequiredDefaultProps}>
+                    <div className="flex items-center justify-center gap-2">
+                      <FaThumbsUp size={20} />
+                      <Typography className="text-sm" placeholder="" {...RequiredDefaultProps}>
+                        {thread.upVotesBy.length}
+                      </Typography>
+                    </div>
+                  </IconButton>
+                  <IconButton variant="text" className="px-6" placeholder="" {...RequiredDefaultProps}>
+                    <div className="flex items-center justify-center gap-2">
+                      <FaThumbsDown size={20} />
+                      <Typography className="text-sm" placeholder="" {...RequiredDefaultProps}>
+                        {thread.downVotesBy.length}
+                      </Typography>
+                    </div>
+                  </IconButton>
+                  <IconButton variant="text" className="px-6" placeholder="" {...RequiredDefaultProps}>
+                    <div className="flex items-center justify-center gap-2">
+                      <FaRegCommentDots size={20} />
+                      <Typography className="text-sm" placeholder="" {...RequiredDefaultProps}>
+                        {thread.totalComments}
+                      </Typography>
+                    </div>
+                  </IconButton>
                 </div>
-                <div className="forum-item__vote">
-                  <div className="upVote__button">
-                    <p>{thread.upVotesBy.length}</p>
-                    <button type="button" onClick={() => EventHandlerVoteUp(thread.id)}>⬆️Up Vote</button>
-                  </div>
-                  <div className="downVote__button">
-                    <button type="button" onClick={() => EventHandlerVoteDown(thread.id)}>⬇️down Vote</button>
-                    <p>{thread.downVotesBy.length}</p>
-                  </div>
-                </div>
-                <p style={{ textAlign: 'end', fontWeight: 'bold', fontSize: '1rem' }}>{thread.totalComments === 0 ? 'No Comment' : `Comment Count: ${thread.totalComments}`}</p>
-              </div>
-            </div>
-            <div>
-              {isLogin && (
-              <div style={{
-                position: 'fixed', right: '2rem', bottom: '2rem', fontSize: '1.25rem',
-              }}
-              >
-                <Link to="/add-discussion"><CiCirclePlus style={{ color: 'black', fontSize: '3rem' }} /></Link>
-              </div>
-              )}
-            </div>
-          </section>
-        ))}
+              </CardFooter>
+            </Card>
+          ))}
+      </div>
+      <div className="fixed right-8 bottom-8 text-size-2xl">
+        {isLogin && (
+          <IconButton {...RequiredDefaultProps} size="lg" placeholder="" variant="filled">
+            <Link to="/add-discussion">
+              <FaPlus size={20} color="white" />
+            </Link>
+          </IconButton>
+        )}
       </div>
     </section>
   );
