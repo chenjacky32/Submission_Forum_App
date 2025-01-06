@@ -8,11 +8,25 @@ import { Typography, Button, Card, CardBody, Avatar, CardFooter, IconButton } fr
 import { GetThreadPayload, GetUsersPayload } from '../global-types/types';
 import { FaThumbsUp, FaThumbsDown, FaRegCommentDots, FaPlus } from 'react-icons/fa';
 import { RequiredDefaultProps } from '../components/Navigation';
+import parse from 'html-react-parser';
+import * as React from 'react';
 
 function HomePage() {
   const { users, threads } = useSelector((state: RootState) => state.ThreadAndUser);
   const { profile, isLogin } = useSelector((state: RootState) => state.auth);
+  const [selectActive, setSelectedActive] = React.useState<string | null>(null);
+
   const dispatch: AppDispatch = useDispatch();
+
+  const filterThreadByCategory = (category: string) => {
+    if (selectActive === category) {
+      setSelectedActive(null);
+    } else {
+      setSelectedActive(category);
+    }
+  };
+
+  const getThreadByCategory = !selectActive ? threads : threads.filter((item: GetThreadPayload) => item.category === selectActive);
 
   function EventHandlerNeutralize(threadId: string) {
     dispatch(asyncNeutralizeThreadVote({ threadId, userId: profile.id }));
@@ -39,6 +53,8 @@ function HomePage() {
     dispatch(asyncGetThreadAndUsers());
   }, [dispatch]);
 
+  const uniqueCategory = threads.length ? [...new Set(threads.map((item: GetThreadPayload) => item.category) as string[])] : [];
+
   return (
     <section>
       <div className="mb-8 px-1.5 py-0.5">
@@ -47,26 +63,29 @@ function HomePage() {
             Popular Category
           </Typography>
           <div className="flex flex-wrap gap-3">
-            {threads.map((thread: GetThreadPayload) => {
+            {uniqueCategory.map((category, index) => {
               return (
                 <Button
-                  key={thread.id}
+                  key={index}
                   className="text-sm font-normal text-blue-gray-900 hover:!text-indigo-700 bg-white border focus:text-indigo-700 active:text-indigo-700
                   active:border-solid active:border-2 active:border-indigo-700 focus:border-solid focus:border-2 focus:border-indigo-700 focus:outline-none"
                   variant="filled"
+                  value={category}
                   size="sm"
                   {...RequiredDefaultProps}
-                  placeholder=""
+                  placeholder={category}
+                  onClick={() => {
+                    filterThreadByCategory(category);
+                  }}
                 >
-                  #{thread.category}
+                  #{category}
                 </Button>
               );
             })}
           </div>
         </div>
-
-        {threads.length > 0 &&
-          threads.map((thread: GetThreadPayload) => (
+        {getThreadByCategory.length > 0 &&
+          getThreadByCategory.map((thread: GetThreadPayload) => (
             <Card key={thread.id} className="mx-12 my-8" placeholder="" {...RequiredDefaultProps}>
               <CardBody placeholder="" {...RequiredDefaultProps}>
                 <div className="flex items-center justify-start gap-4">
@@ -86,7 +105,7 @@ function HomePage() {
                     </Link>
                   </Typography>
                   <Typography color="gray" className="mb-4 text-justify" placeholder="" {...RequiredDefaultProps}>
-                    {thread.body}
+                    {parse(thread.body)}
                   </Typography>
                   <Card
                     shadow={false}

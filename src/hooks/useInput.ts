@@ -1,9 +1,9 @@
 import { useState } from 'react';
 
-export default function useInput(defaultValue = '') {
-  const [value, setValue] = useState(defaultValue);
+export default function useInput(defaultValue: string = ''): [string, ({ target }: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void, React.Dispatch<React.SetStateAction<string>>] {
+  const [value, setValue] = useState<string>(defaultValue);
 
-  function HandleValueChange({ target }) {
+  function HandleValueChange({ target }: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
     setValue(target.value);
   }
 

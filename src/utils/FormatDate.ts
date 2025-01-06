@@ -1,12 +1,25 @@
 export default function FormatDate(isoDateString: string): string {
-  const date = new Date(isoDateString);
+  const currentDate = new Date();
+  const postedDate = new Date(isoDateString);
 
-  const Year = date.getFullYear();
-  const Month = String(date.getMonth() + 1).padStart(2, '0');
-  const Day = String(date.getDate()).padStart(2, '0');
-  const Hours = String(date.getHours()).padStart(2, '0');
-  const Minutes = String(date.getMinutes()).padStart(2, '0');
-  const Seconds = String(date.getSeconds()).padStart(2, '0');
+  const diff = currentDate.getTime() - postedDate.getTime();
 
-  return `${Year}-${Month}-${Day} ${Hours}:${Minutes}:${Seconds}`;
+  const diffDays = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const diffHours = Math.floor(diff / (1000 * 60 * 60));
+  const diffMinutes = Math.floor(diff / (1000 * 60));
+  const diffSeconds = Math.floor(diff / 1000);
+
+  if (diffDays > 0) {
+    return `${diffDays} days ago`;
+  }
+  if (diffHours > 0) {
+    return `${diffHours} hours ago`;
+  }
+  if (diffMinutes > 0) {
+    return `${diffMinutes} minutes ago`;
+  }
+  if (diffSeconds > 0) {
+    return `${diffSeconds} seconds ago`;
+  }
+  return 'just now';
 }
